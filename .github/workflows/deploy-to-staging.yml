@@ -29,3 +29,6 @@ jobs:
         with:
           push: true
           tags: saathiproject/saathi-uploader:latest
+          build-args: |
+            "SENTRY_DSN=${{ secrets.SENTRY_DSN }}"
+            "UPLOAD_API_URL=${{ secret.UPLOAD_API_URL }}"

@@ -1,6 +1,12 @@
 # Use the official Python image as the base image
 FROM python:3.8-slim
 
+ARG UPLOAD_API_URL
+ARG SENTRY_DSN
+
+ENV UPLOAD_API_URL=$UPLOAD_API_URL
+ENV SENTRY_DSN=$SENTRY_DSN
+
 # Set the working directory in the container
 WORKDIR /app
 
