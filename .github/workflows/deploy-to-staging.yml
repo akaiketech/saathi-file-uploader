@@ -3,7 +3,7 @@ name: Dev Branch Deployment
 on:
   push:
     branches:
-      - dev
+      - patch
 
 jobs:
   docker:
