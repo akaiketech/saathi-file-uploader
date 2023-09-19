@@ -70,9 +70,9 @@ def main():
         st.header("Fill the Scheme Details")
 
         scheme_gender = st.radio("Select Gender", ["General", "Female"])
-        scheme_category = st.multiselect("Select Category", ["Schedule Caste", "Schedule Tribe", "General"])
+        scheme_category = st.multiselect("Select Category", ["Schedule Caste (SC)", "Schedule Tribe (ST) ", "General", "Other Backward Classes (OBC)"])
         scheme_source = st.radio("Select Scheme Source", ["State", "Central", "Bank"])
-        scheme_type = st.multiselect("Select Scheme Type", ["Loan", "Insurance", "Education", "Savings", "Welfare"])
+        scheme_type = st.multiselect("Select Scheme Type", ["Loan", "Insurance", "Education", "Savings", "Welfare", "Pension"])
         scheme_description = st.text_area("Scheme Description", "")
 
     with col2:
@@ -86,25 +86,29 @@ def main():
                 file_content = BytesIO(uploaded_file.read())
                 files = {"file": (uploaded_file.name, file_content)}
 
-                data = {
+                params = {
                     "scheme_gender": scheme_gender,
-                    "scheme_category": scheme_category,
-                    "scheme_source": scheme_source,
-                    "scheme_type": scheme_type,
+                    "scheme_source": scheme_source, 
                     "scheme_description": scheme_description,
+                }
+                
+                data = {
+                    "scheme_type": scheme_type,
+                    "scheme_category": scheme_category
                 }
                 
                 try:
                     # Send the request to the API
-                    res = requests.post(UPLOAD_API_URL, params=data, files=files)
+                    res = requests.post(UPLOAD_API_URL, params=params, data=data, files=files)
                     res.raise_for_status()
 
                     # Log successful upload
-                    logger.info(f"File uploaded successfully: {uploaded_file.name} with fields {data}")
+                    logger.info(f"File uploaded successfully: {uploaded_file.name} with fields {data}{params}")
 
                     st.success(f"File uploaded successfully: {uploaded_file.name}")
                     st.markdown("### Summary")
                     st.json(data)
+                    st.json(params)
 
                 except Exception as e:
                     # Log error and send it to Sentry
