@@ -96,7 +96,7 @@ def main():
                 
                 try:
                     # Send the request to the API
-                    res = requests.post(API_URL, params=data, files=files)
+                    res = requests.post(UPLOAD_API_URL, params=data, files=files)
                     res.raise_for_status()
 
                     # Log successful upload
