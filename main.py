@@ -87,11 +87,11 @@ def main():
                 files = {"file": (uploaded_file.name, file_content)}
 
                 data = {
-                    "schemeGender": scheme_gender,
-                    "schemeCategory": scheme_category,
-                    "schemeSource": scheme_source,
-                    "schemeType": scheme_type,
-                    "schemeDescription": scheme_description,
+                    "scheme_gender": scheme_gender,
+                    "scheme_category": scheme_category,
+                    "scheme_source": scheme_source,
+                    "scheme_type": scheme_type,
+                    "scheme_description": scheme_description,
                 }
                 
                 try:
