@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 8502
 
 # Start the FastAPI application
-CMD ["streamlit", "run", "main.py", "--server.port 8502" ]
+CMD ["streamlit", "run", "main.py", "--server.port", "8502"]
